@@ -164,7 +164,7 @@ this.findOpenPathHelper = async function (td_elements, startPoint) { // helps fi
   console.log("THREAD: "+this.thread_num);
   if (this.found)
   {
-      console.log("FOUND END!");
+      console.log("FOUND END!" , this.thread_num);
       return 0;
   }
   var checkTop    = true;
@@ -332,10 +332,11 @@ this.bfs =  async function (source, callback) {
         count = queue[tail++].count;  // Pop a vertex off the queue.
 
         this.print('distance from ' + source + ' to ' + u + ': ' + count);
+        console.log(count);
         var td = document.getElementById(u);
         td.style.backgroundColor = "purple";
 
-        await this.sleep(13);
+        await this.sleep(10);
 
         this.graph.neighbors[u].forEach(async function (v) {
             if (!visited[v]) {
@@ -406,6 +407,8 @@ this.shortestPath = async function shortestPath(source, target, graph, sleep, en
                     await sleep(163);
                     document.getElementById(path[i]).style.backgroundColor = "yellow";
                 }
+                document.getElementById('text1').innerHTML = 'CONGRULATIONS... WE GOT THE SHORTEST PATH !'
+                document.getElementById('text').innerHTML = 'distance from starting point to end point : ' + path.length;
                 //this.print(path.join(' &rarr; '));
                 return;
             }
